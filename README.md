@@ -118,3 +118,22 @@ ReactDOM.render(
     <h2>Hope you are liking the tuts</h2>
   </div>
    ```
+
+## JavaScript Expressions in JSX
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+
+const name = "Naveen";
+const lang = "ReactJs";
+
+ReactDOM.render(
+  <>
+    <h1>Using JavaScript Expression in JSX</h1>
+    <h4>Hello there, My name is {name}</h4>
+    <h4>I'm excited to learn {lang}</h4>
+    <p>Generating the random number {Math.random()}</p>
+  </>,
+  document.getElementById("root")
+);
+```
