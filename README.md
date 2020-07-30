@@ -34,4 +34,21 @@ React is a javascript **library** for building Beautiful User Interface.
 * create-react-app --version
 * create-react-app <projectname>
 
+## what is render() method ?
+render method takes 3 arugments like
+1. what do you want to display 
+ ```
+ <h1>Hello, World !</h1>
+ ```
+2. Where you want to display 
+```
+document.getElementById('root')
+```
+3. Call back function 
 
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(<h1>Hello, World !</h1>, document.getElementById('root'));
+```
