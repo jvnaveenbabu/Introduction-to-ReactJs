@@ -23,7 +23,7 @@ React is a javascript **library** for building Beautiful User Interface.
 
 3. Basic understanding of how to use npm.
 
-## React Installation 👨‍💻
+## 1. React Installation 👨‍💻
 
 1. Install NodeJs and NPM
 
@@ -34,7 +34,7 @@ React is a javascript **library** for building Beautiful User Interface.
 * create-react-app --version
 * create-react-app <projectname>
 
-## what is render() method ?
+## 2. What is render() method ?
 render method takes 3 arugments like
 1. what do you want to display 
  ```
@@ -60,7 +60,7 @@ jsx instead of html
 where jsx stands for JavaScript XML
 ```
 
-## How to Render Multiple Elements inside a ReactDOM.render() ?
+## 3. How to Render Multiple Elements inside a ReactDOM.render() ?
 * For rendering the multiple elements we have two ways :
  1. By Using array of elements 
  ```javascript
@@ -119,7 +119,7 @@ ReactDOM.render(
   </div>
    ```
 
-## JavaScript Expressions in JSX
+## 4. JavaScript Expressions in JSX
 ```javascript
 import React from "react";
 import ReactDOM from "react-dom";
