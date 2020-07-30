@@ -52,3 +52,69 @@ import ReactDOM from 'react-dom';
 
 ReactDOM.render(<h1>Hello, World !</h1>, document.getElementById('root'));
 ```
+
+## NOTE :
+```
+In ReactJs we use 
+jsx instead of html
+where jsx stands for JavaScript XML
+```
+
+## How to Render Multiple Elements inside a ReactDOM.render() ?
+* For rendering the multiple elements we have two ways :
+ 1. By Using array of elements 
+ ```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+
+  // In react v16^ it's possible for render()
+  // to return an array of elements
+  
+  [
+    <h1>Hello, World !</h1>,
+    <p>Plz like and share</p>,
+    <h2>Hope you are liking the tuts</h2>
+  ],
+ 
+  document.getElementById('root'));
+ ```
+ 2. By using <div></div>
+ ```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+ReactDOM.render(
+  
+  <div>
+    <h1>Hello, World !</h1>
+    <p>Plz like and share</p>
+    <h2>Hope you are liking the tuts</h2>
+  </div>
+  ,
+ 
+  document.getElementById('root'));
+ ```
+ 
+ 3. By using <React.Fragment></React.Fragment> or <></>
+  * <></> is used instead of <div></div> because while rendering the elements inside a div we have a draw that it will create nested div which may cause effect while using flexbox or grid in css
+  ```javascript
+  <div id="root">
+   <div>
+    <h1>Hello, World !</h1>
+    <p>Plz like and share</p>
+    <h2>Hope you are liking the tuts</h2>
+   </div>
+  </div>
+  ```
+  
+  * Advantage of using React fragment <></>
+   It will directly render the elements inside the id = 'root' it will not create nested div's
+   ```javascript
+ <div id="root">
+    <h1>Hello, World !</h1>
+    <p>Plz like and share</p>
+    <h2>Hope you are liking the tuts</h2>
+  </div>
+   ```
