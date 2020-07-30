@@ -80,7 +80,7 @@ ReactDOM.render(
  
   document.getElementById('root'));
  ```
- 2. By using <div></div>
+ 2. By using div's
  ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
