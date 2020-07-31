@@ -156,3 +156,24 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
+## Challange 1 : Display Current Date and time in JSX
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+
+var today = new Date();
+var date =
+  today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+
+var time =
+  today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+ReactDOM.render(
+  <>
+    <h1>It will display current date and Time</h1>
+    <p>{`Today's Date is ${date}`}</p>
+
+    <p>{`Current time ${time}`}</p>
+  </>,
+  document.getElementById("root")
+);
+```
