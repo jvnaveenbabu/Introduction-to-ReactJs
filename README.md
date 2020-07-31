@@ -137,3 +137,22 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
+## 5. Template Literals in JSX
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+
+const fname = "Naveen";
+const lname = "babu";
+
+// Template Literals in JSX
+ReactDOM.render(
+  <>
+    <h1>Using JavaScript Expression in JSX</h1>
+    <h4>{`Hello there, My name is ${fname} ${lname}`}</h4>
+
+    <p>Generating the random number {Math.random()}</p>
+  </>,
+  document.getElementById("root")
+);
+```
