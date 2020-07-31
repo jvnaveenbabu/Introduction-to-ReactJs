@@ -217,3 +217,47 @@ ReactDOM.render(
 2. Copy the CSS link from the GoogleFonts
 3. Then Paste the link in public/index.html file inside the head section
 4. Then you can use font-family in src/index.css file wherever you want.
+
+## Note :-
+1. For Internal Styling in ReactJS we need to create properties like same as we creating the objects in js
+* Method 1:
+```javascript
+const head = {
+  color: '#fa9191',
+  textAlign: 'center',
+  textTransform: 'capitalize'
+}
+<h1 className="heading" style = {head}>My name is {name}</h1>
+```
+* Method 2 :
+```css
+<h1 className="heading" style = {{color: '#fa9191', textAlign: 'center', textTransform:'capitalize' }}>My name is {name}</h1>
+```
+2. But here while styling we need to covert the kabab case (ex. text-transform: capitalize;) into camelCase (Ex. textTransform: 'capitalize';) and the value should be under quotes("")
+
+## 10. Internal CSS Styling
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+
+const name = "Naveen";
+const img1 = "https://source.unsplash.com/300x300/?programming";
+const img2 = "https://source.unsplash.com/300x300/?coding";
+
+const head = {
+  color: '#fa9191',
+  textAlign: 'center',
+  textTransform: 'capitalize'
+}
+ReactDOM.render(
+  <>
+    <h1 className="heading" style = {head}>My name is {name}</h1>
+    <div className="img-div">
+      <img src={img1} alt="Random Imgs" />
+      <img src={img2} alt="Random Imgs" />
+    </div>
+  </>,
+  document.getElementById("root")
+);
+```
