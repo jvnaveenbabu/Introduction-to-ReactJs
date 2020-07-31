@@ -177,3 +177,38 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
+## 5. CSS Styling and Importing CSS in ReactJS
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+
+const name = "Naveen";
+const img1 = "https://source.unsplash.com/300x300/?programming";
+const img2 = "https://source.unsplash.com/300x300/?coding";
+const img3 = "https://source.unsplash.com/300x300/?computer";
+
+const link = "https://source.unsplash.com/";
+ReactDOM.render(
+  <>
+    <h1 className="heading">My name is {name}</h1>
+    <div className="img-div">
+      <img src={img1} alt="Random Imgs" />
+      <img src={img2} alt="Random Imgs" />
+
+      <a href={link} target="_blank">
+        <img src={img3} alt="Random Imgs" />
+      </a>
+    </div>
+  </>,
+  document.getElementById("root")
+);
+```
+## Note : Why we add className instead of class to style the elements in ReactJS
+* Class is a Reserved word in ReactJs
+* If we add a class to an element to style it will throw an error in the console that instead of class use className.
+* In ReactJS we use className to style the elements.
+* Example :-
+```css
+<h1 className="heading">Hope that you are gaining the knowledge from this Readme.md file 🙂</h1>
+```
