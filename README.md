@@ -156,7 +156,7 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
-## Challange 1 : Display Current Date and time in JSX
+## Challenge 1 : Display Current Date and time in JSX
 ```javascript
 import React from "react";
 import ReactDOM from "react-dom";
