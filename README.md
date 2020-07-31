@@ -212,3 +212,8 @@ ReactDOM.render(
 ```css
 <h1 className="heading">Hope that you are gaining the knowledge from this Readme.md file 🙂</h1>
 ```
+## 9. How to add Googlefonts in ReactJs
+1. Select the font from GoogleFonts
+2. Copy the CSS link from the GoogleFonts
+3. Then Paste the link in public/index.html file inside the head section
+4. Then you can use font-family in src/index.css file wherever you want.
