@@ -287,7 +287,7 @@ function div(a, b) {
 export { add, sub, multi, div };
 ```
 * App.jsx
-```
+```javascript
 import React from "react";
 import { add, sub, multi, div } from "./Calc";
 function App() {
@@ -306,7 +306,7 @@ function App() {
 export default App;
 ```
 * index.js
-```
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
