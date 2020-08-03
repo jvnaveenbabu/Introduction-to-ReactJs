@@ -316,3 +316,57 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+## 12. Props in ReactJS 
+* Props ( Which Stands for properties )
+* React Props are like function arguments in JavaScript and attributes
+Cards.jsx
+```javascript
+import React from "react";
+
+function Cards(props) {
+  return (
+    <div className="cards">
+      <div className="card">
+        <img src={props.imgsrc} alt="myPic" className="card_img" />
+        <div className="card_info">
+          <span className="card_category">{props.title}</span>
+          <h3 className="card_title">{props.sname}</h3>
+          <a href="" target="_blank">
+            <button>Watch Now</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Cards;
+```
+index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import Cards from "./Cards";
+import "./index.css";
+
+ReactDOM.render(
+  <>
+    <Cards
+      imgsrc="https://source.unsplash.com/400x400/?nature,water"
+      title="A Netflix original series"
+      sname="DARK"
+    />
+    <Cards
+      imgsrc="https://source.unsplash.com/400x400/?coding"
+      title="A Netflix original series"
+      sname="Coding with love"
+    />
+    <Cards
+      imgsrc="https://source.unsplash.com/400x400/?programmig"
+      title="A Netflix original series"
+      sname="Programming Days"
+    />
+  </>,
+  document.getElementById("root")
+);
+```
