@@ -261,3 +261,58 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
+## 11. ES6 Import and Export Modules in ReactJs
+* Calc.jsx
+```javascript
+function add(a, b) {
+  let sum = a + b;
+  return sum;
+}
+
+function sub(a, b) {
+  let sub = a - b;
+  return sub;
+}
+
+function multi(a, b) {
+  let mult = a * b;
+  return mult;
+}
+
+function div(a, b) {
+  let div = a / b;
+  div = div.toFixed(2); // To display 2 digits after decimals
+  return div;
+}
+export { add, sub, multi, div };
+```
+* App.jsx
+```
+import React from "react";
+import { add, sub, multi, div } from "./Calc";
+function App() {
+  return (
+    <>
+      <ul>
+        <li>Sum of Two numbers is {add(30, 3)}</li>
+        <li>Sub of Two numbers is {sub(30, 3)}</li>
+        <li>Multiplication of two numbers is {multi(10, 3)}</li>
+        <li>Division of two numbers {div(10, 3)}</li>
+      </ul>
+    </>
+  );
+}
+
+export default App;
+```
+* index.js
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(
+  <App/>,
+  document.getElementById('root')
+);
+```
