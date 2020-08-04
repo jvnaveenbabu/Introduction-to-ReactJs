@@ -261,3 +261,112 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
+## 11. ES6 Import and Export Modules in ReactJs
+* Calc.jsx
+```javascript
+function add(a, b) {
+  let sum = a + b;
+  return sum;
+}
+
+function sub(a, b) {
+  let sub = a - b;
+  return sub;
+}
+
+function multi(a, b) {
+  let mult = a * b;
+  return mult;
+}
+
+function div(a, b) {
+  let div = a / b;
+  div = div.toFixed(2); // To display 2 digits after decimals
+  return div;
+}
+export { add, sub, multi, div };
+```
+* App.jsx
+```javascript
+import React from "react";
+import { add, sub, multi, div } from "./Calc";
+function App() {
+  return (
+    <>
+      <ul>
+        <li>Sum of Two numbers is {add(30, 3)}</li>
+        <li>Sub of Two numbers is {sub(30, 3)}</li>
+        <li>Multiplication of two numbers is {multi(10, 3)}</li>
+        <li>Division of two numbers {div(10, 3)}</li>
+      </ul>
+    </>
+  );
+}
+
+export default App;
+```
+* index.js
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(
+  <App/>,
+  document.getElementById('root')
+);
+```
+## 12. Props in ReactJS 
+* Props ( Which Stands for properties )
+* React Props are like function arguments in JavaScript and attributes
+Cards.jsx
+```javascript
+import React from "react";
+
+function Cards(props) {
+  return (
+    <div className="cards">
+      <div className="card">
+        <img src={props.imgsrc} alt="myPic" className="card_img" />
+        <div className="card_info">
+          <span className="card_category">{props.title}</span>
+          <h3 className="card_title">{props.sname}</h3>
+          <a href="" target="_blank">
+            <button>Watch Now</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Cards;
+```
+index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import Cards from "./Cards";
+import "./index.css";
+
+ReactDOM.render(
+  <>
+    <Cards
+      imgsrc="https://source.unsplash.com/400x400/?nature,water"
+      title="A Netflix original series"
+      sname="DARK"
+    />
+    <Cards
+      imgsrc="https://source.unsplash.com/400x400/?coding"
+      title="A Netflix original series"
+      sname="Coding with love"
+    />
+    <Cards
+      imgsrc="https://source.unsplash.com/400x400/?programmig"
+      title="A Netflix original series"
+      sname="Programming Days"
+    />
+  </>,
+  document.getElementById("root")
+);
+```
