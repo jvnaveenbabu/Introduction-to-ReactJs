@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.heading_style {
+  padding: 30px 0;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #dde7e5;
+  margin-bottom: 30px;
+}
+
+.slot_mac {
+  text-align: center;
+  width: 40vw;
+  height: 49vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #333;
+}
+
+.slot_inner {}
