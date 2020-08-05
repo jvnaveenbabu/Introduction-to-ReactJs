@@ -1,0 +1,27 @@
+body {
+  background: #dde5e7;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.counter {}
+
+h1 {
+  font-size: 70px;
+  align-items: center;
+}
+
+button {
+  padding: 20px 70px;
+  background-color: crimson;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  color: #fff;
+}
+
+button:hover {
+  background-color: green;
+}
