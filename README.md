@@ -370,3 +370,93 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
+## 13. Events in ReactJS
+Handling events with React elements is very similar to handling events on DOM elements. There are some syntax differences:
+
+* React events are named using camelCase, rather than lowercase.
+* With JSX you pass a function as the event handler, rather than a string.
+
+#### Some Example of Events :-
+1. **onChange**	An HTML element has been changed
+2. **onClick**	The user clicks an HTML element
+3. **onMouseOver**	The user moves the mouse over an HTML element
+4. **onMouseOut**	The user moves the mouse away from an HTML element
+5. **onkeyDown**	The user pushes a keyboard key
+6. **onLoad**	The browser has finished loading the page
+
+src/App.jsx
+```javascript
+import React, { useState } from "react";
+
+const App = () => {
+  const purple = "#8e44ad";
+  const [bg, setBg] = useState(purple);
+
+  const [name, setName] = useState("Click Me");
+
+  const bgChange = () => {
+    // console.log("clicked");
+    let newBg = "#34495e";
+    setBg(newBg);
+    setName("Ouch !! 😫");
+  };
+
+  const bgBack = () => {
+    setBg(purple);
+    setName("Ayyo !! 😌");
+  };
+
+  return (
+    <>
+      <div style={{ backgroundColor: bg }}>
+        <button onClick={bgChange} onDoubleClick={bgBack}>
+          {name}
+        </button>
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+src/index.css
+```css
+* {
+  padding: 0;
+  margin: 0;
+}
+div {
+  width: 100%;
+  height: 100vh;
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 20px 40px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  background-color: lightcoral;
+  font-size: 15px;
+  font-weight: 500;
+}
+button:hover {
+  background-color: #dde1e7;
+}
+h1 {
+  text-align: center;
+}
+```
+src/index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
