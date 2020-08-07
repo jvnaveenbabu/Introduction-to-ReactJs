@@ -489,3 +489,49 @@ import "./index.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
+## 15. Controlled Component in ReactJS
+src/App.jsx
+```javascript
+import React, { useState } from "react";
+
+const App = () => {
+  const [name, setName] = useState();
+  const [fullName, setfullName] = useState();
+
+  const inputEvent = (event) => {
+    // console.log();
+    setName(event.target.value);
+  };
+
+  const onSubmit = () => {
+    setfullName(name);
+  };
+  return (
+    <>
+      <div>
+        <h1>Hello {fullName}</h1>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          onChange={inputEvent}
+          value={name}
+        ></input>
+        <button type="submit" onClick={onSubmit}>
+          Click Me
+        </button>
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+src/index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
+
+ReactDOM.render( < App / > , document.getElementById("root"));
+```
