@@ -535,3 +535,131 @@ import "./index.css";
 
 ReactDOM.render( < App / > , document.getElementById("root"));
 ```
+
+## 16. Handling Form ( Complex State )
+src/app.jsx
+```javascript
+import React, { useState } from "react";
+
+const App = () => {
+  // For changing the state
+  const [FullName, setFullName] = useState({
+    fname: "",
+    lname: "",
+  });
+
+  const onSubmits = (event) => {
+    event.preventDefault();
+    alert("form submitted");
+  };
+
+  const inputEvent = (event) => {
+    console.log(event.target.value);
+    console.log(event.target.name);
+
+    const value = event.target.value;
+    const name = event.target.name;
+
+    setFullName((preValue) => {
+      // console.log(preValue);
+      if (name === "fname") {
+        return {
+          fname: value,
+          lname: preValue.lname,
+        };
+      } else if (name === "lname") {
+        return {
+          fname: preValue.fname,
+          lname: value,
+        };
+      }
+    });
+  };
+
+  return (
+    <>
+      <div className="main-div">
+        <h1>
+          Hello {FullName.fname} {FullName.lname}
+        </h1>
+        <form onSubmit={onSubmits}>
+          <input
+            type="text"
+            placeholder="Enter your FirstName"
+            name="fname"
+            value={FullName.fname}
+            onChange={inputEvent}
+          />
+          <input
+            type="text"
+            placeholder="Enter your LastName"
+            name="lname"
+            value={FullName.lname}
+            onChange={inputEvent}
+          />
+          {/* <input
+            type="text"
+            placeholder="Enter your Email"
+            name="email"
+            value={email}
+            onChange={inputEvent}
+          /> */}
+          <button type="submit" onClick={onSubmits}>
+            Click Me
+          </button>
+        </form>
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+src/index.css
+```css
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.main-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input {
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+}
+
+button {
+  margin-left: 120px;
+  padding: 10px 40px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  background-color: lightcoral;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+button:hover {
+  background-color: #dde1e7;
+}
+
+h1 {
+  text-align: center;
+}
+```
+src/index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
