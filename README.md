@@ -370,3 +370,334 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
+## 13. React Hooks
+Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class.
+
+**Types of Hooks**
+Below are some of the major Hooks that will be used generally in your React apps:
+
+* useState — allows us to write pure functions with state in them
+* useEffect — lets us perform side effects. Side effects can be API calls, updating the DOM, subscribing to event listeners
+* useContext — allows us to write pure functions with context in them
+* useRef — allows us to write pure functions that return a mutable ref object
+
+```javascript
+import React, { useState } from 'react';
+
+const Example = () => {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+
+## 14. Events in ReactJS
+Handling events with React elements is very similar to handling events on DOM elements. There are some syntax differences:
+
+* React events are named using camelCase, rather than lowercase.
+* With JSX you pass a function as the event handler, rather than a string.
+
+#### Some Example of Events :-
+1. **onChange**	An HTML element has been changed
+2. **onClick**	The user clicks an HTML element
+3. **onMouseOver**	The user moves the mouse over an HTML element
+4. **onMouseOut**	The user moves the mouse away from an HTML element
+5. **onkeyDown**	The user pushes a keyboard key
+6. **onLoad**	The browser has finished loading the page
+
+src/App.jsx
+```javascript
+import React, { useState } from "react";
+
+const App = () => {
+  const purple = "#8e44ad";
+  const [bg, setBg] = useState(purple);
+
+  const [name, setName] = useState("Click Me");
+
+  const bgChange = () => {
+    // console.log("clicked");
+    let newBg = "#34495e";
+    setBg(newBg);
+    setName("Ouch !! 😫");
+  };
+
+  const bgBack = () => {
+    setBg(purple);
+    setName("Ayyo !! 😌");
+  };
+
+  return (
+    <>
+      <div style={{ backgroundColor: bg }}>
+        <button onClick={bgChange} onDoubleClick={bgBack}>
+          {name}
+        </button>
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+src/index.css
+```css
+* {
+  padding: 0;
+  margin: 0;
+}
+div {
+  width: 100%;
+  height: 100vh;
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 20px 40px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  background-color: lightcoral;
+  font-size: 15px;
+  font-weight: 500;
+}
+button:hover {
+  background-color: #dde1e7;
+}
+h1 {
+  text-align: center;
+}
+```
+src/index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
+## 15. Controlled Component in ReactJS
+src/App.jsx
+```javascript
+import React, { useState } from "react";
+
+const App = () => {
+  const [name, setName] = useState();
+  const [fullName, setfullName] = useState();
+
+  const inputEvent = (event) => {
+    // console.log();
+    setName(event.target.value);
+  };
+
+  const onSubmit = () => {
+    setfullName(name);
+  };
+  return (
+    <>
+      <div>
+        <h1>Hello {fullName}</h1>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          onChange={inputEvent}
+          value={name}
+        ></input>
+        <button type="submit" onClick={onSubmit}>
+          Click Me
+        </button>
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+src/index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
+
+ReactDOM.render( < App / > , document.getElementById("root"));
+```
+
+## 16. Handling Form ( Complex State )
+src/app.jsx
+```javascript
+import React, { useState } from "react";
+
+const App = () => {
+  // For changing the state
+  const [FullName, setFullName] = useState({
+    fname: "",
+    lname: "",
+  });
+
+  const onSubmits = (event) => {
+    event.preventDefault();
+    alert("form submitted");
+  };
+
+  const inputEvent = (event) => {
+    console.log(event.target.value);
+    console.log(event.target.name);
+
+    const value = event.target.value;
+    const name = event.target.name;
+
+    setFullName((preValue) => {
+      // console.log(preValue);
+      if (name === "fname") {
+        return {
+          fname: value,
+          lname: preValue.lname,
+        };
+      } else if (name === "lname") {
+        return {
+          fname: preValue.fname,
+          lname: value,
+        };
+      }
+    });
+  };
+
+  return (
+    <>
+      <div className="main-div">
+        <h1>
+          Hello {FullName.fname} {FullName.lname}
+        </h1>
+        <form onSubmit={onSubmits}>
+          <input
+            type="text"
+            placeholder="Enter your FirstName"
+            name="fname"
+            value={FullName.fname}
+            onChange={inputEvent}
+          />
+          <input
+            type="text"
+            placeholder="Enter your LastName"
+            name="lname"
+            value={FullName.lname}
+            onChange={inputEvent}
+          />
+          {/* <input
+            type="text"
+            placeholder="Enter your Email"
+            name="email"
+            value={email}
+            onChange={inputEvent}
+          /> */}
+          <button type="submit" onClick={onSubmits}>
+            Click Me
+          </button>
+        </form>
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+src/index.css
+```css
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.main-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input {
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+}
+
+button {
+  margin-left: 120px;
+  padding: 10px 40px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  background-color: lightcoral;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+button:hover {
+  background-color: #dde1e7;
+}
+
+h1 {
+  text-align: center;
+}
+```
+src/index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
+
+## 17. Spread Operator in React JS
+* It is denoted by three dots ```...```
+* We can use the spread operator on iterables like a String or an array 
+* Usage of Spread Operator
+  * Copying an array
+  * Concatenating or combining arrays
+  * Combining objects
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+//Case 1: Use of Spread Operator (...)
+const fullName = ["Naveen", "Babu"];
+
+const bio = [1, ...fullName, 19, "male"];
+
+console.log(fullName);
+console.log(bio);
+
+// Case 2 : In Spreads operator in object
+const fullName = {
+    fname:'Naveen',
+    lastName : 'babu'
+}
+
+const biodata = {
+    id:1,
+    ...fullName,
+    age:19,
+    gender:male
+};
+
+console.log(fullName);
+console.log(biodata);
+```
