@@ -663,3 +663,41 @@ import "./index.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
+
+## 17. Spread Operator in React JS
+* It is denoted by three dots ```...```
+* We can use the spread operator on iterables like a String or an array 
+* Usage of Spread Operator
+  * Copying an array
+  * Concatenating or combining arrays
+  * Combining objects
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+//Case 1: Use of Spread Operator (...)
+const fullName = ["Naveen", "Babu"];
+
+const bio = [1, ...fullName, 19, "male"];
+
+console.log(fullName);
+console.log(bio);
+
+// Case 2 : In Spreads operator in object
+const fullName = {
+    fname:'Naveen',
+    lastName : 'babu'
+}
+
+const biodata = {
+    id:1,
+    ...fullName,
+    age:19,
+    gender:male
+};
+
+console.log(fullName);
+console.log(biodata);
+```
