@@ -701,3 +701,96 @@ const biodata = {
 console.log(fullName);
 console.log(biodata);
 ```
+
+## 18. Adding Bootstrap in ReactJs with the help of npm 
+* What is npm ?
+1. npm is the world's largest Software Registry.
+2. The registry contains over 800,000 code packages. 
+3. Full form of npm is node package manager
+
+* Software package manager
+1. All npm packages are defined in files called package.json. Ex: npm init
+2. The content of package.json must be written in JSON.
+3. At least two fields must be present in the defination file: name and version
+
+* How to install bootstrap ?
+Step 1: Open the terminal and hit ```npm i bootstrap```
+Step 2: Import the bootstrap files ```import "../node_modules/bootstrap/dist/css/bootstrap.min.css";```
+Step 3: Now you are ready to access bootstrap classes
+
+src/App.jsx
+```javascript
+import React from "react";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+const App = () => {
+  return (
+    <>
+      <h1 className="text-center mb-5 mt-2">Welcome to my WebPage</h1>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm">
+            <div class="card" style={{ width: "18rem" }}>
+              <img
+                src="https://picsum.photos/100/101"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+                <a href="#" class="btn btn-primary">
+                  Go somewhere
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-sm">
+            <div class="card" style={{ width: "18rem" }}>
+              <img
+                src="https://picsum.photos/101/100"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+                <a href="#" class="btn btn-primary">
+                  Go somewhere
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-sm">
+            <div class="card" style={{ width: "18rem" }}>
+              <img
+                src="https://picsum.photos/100/100"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+                <a href="#" class="btn btn-primary">
+                  Go somewhere
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
