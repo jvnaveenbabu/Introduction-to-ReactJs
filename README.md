@@ -714,9 +714,9 @@ console.log(biodata);
 3. At least two fields must be present in the defination file: name and version
 
 * How to install bootstrap ?
-Step 1: Open the terminal and hit ```npm i bootstrap```
-Step 2: Import the bootstrap files ```import "../node_modules/bootstrap/dist/css/bootstrap.min.css";```
-Step 3: Now you are ready to access bootstrap classes
+1. Open the terminal and hit ```npm i bootstrap```
+2. Import the bootstrap files ```import "../node_modules/bootstrap/dist/css/bootstrap.min.css";```
+3. Now you are ready to access bootstrap classes
 
 src/App.jsx
 ```javascript
