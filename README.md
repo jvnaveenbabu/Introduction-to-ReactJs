@@ -794,3 +794,81 @@ const App = () => {
 
 export default App;
 ```
+## 19. createContext()
+* React Hooks provides a concept call **Context**
+* React Context API allows you to easily access data at different level of the components tree, without passing props to every level
+src/App.jsx
+```javascript
+import React, { createContext } from "react";
+import ComA from "./ComA";
+
+const FirstName = createContext();
+const LastName = createContext();
+
+const App = () => {
+  return (
+    <>
+      <FirstName.Provider value={"Naveen"}>
+        <LastName.Provider value={"Babu"}>
+          <ComA />
+        </LastName.Provider>
+      </FirstName.Provider>
+    </>
+  );
+};
+
+export default App;
+export { FirstName, LastName };
+```
+src/ComA.jsx
+```javascript
+import React from "react";
+import ComB from "./ComC";
+
+const ComA = () => {
+  return <ComB />;
+};
+
+export default ComA;
+```
+
+src/ComB
+```javascript
+import React from "react";
+import ComC from "./ComC";
+
+const ComB = () => {
+  return <ComC />;
+};
+
+export default ComB;
+```
+src/ComC
+```javascript
+import React from "react";
+import { FirstName, LastName } from "./App";
+
+const ComC = () => {
+  return (
+    <>
+      <FirstName.Consumer>
+        {(fname) => {
+          return (
+            <LastName.Consumer>
+              {(lname) => {
+                return (
+                  <h1>
+                    My name is {fname} {lname}
+                  </h1>
+                );
+              }}
+            </LastName.Consumer>
+          );
+        }}
+      </FirstName.Consumer>
+    </>
+  );
+};
+
+export default ComC;
+```
