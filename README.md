@@ -872,3 +872,47 @@ const ComC = () => {
 
 export default ComC;
 ```
+## 20. useContext()
+* Instead of using Consumer we can use useContext() to make code less and effective.
+src/App.jsx
+```javascript
+import React, { createContext } from "react";
+import ComB from "./ComB";
+
+const FirstName = createContext();
+const LastName = createContext();
+
+const App = () => {
+  return (
+    <>
+      <FirstName.Provider value={"Naveen"}>
+        <LastName.Provider value={"Babu"}>
+          <ComB />
+        </LastName.Provider>
+      </FirstName.Provider>
+    </>
+  );
+};
+
+export default App;
+export { FirstName, LastName };
+```
+
+src/ComB.jsx
+```javascript
+import React, { useContext } from "react";
+import { FirstName, LastName } from "./App";
+
+const ComB = () => {
+  const fname = useContext(FirstName);
+  const lname = useContext(LastName);
+  return (
+    <h1>
+      My name is {fname}
+      {lname}
+    </h1>
+  );
+};
+
+export default ComB;
+```
