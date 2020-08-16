@@ -941,6 +941,8 @@ function Example() {
 }
 ```
 ## 22. React API call ( AXIOS + useEffect() + async await )
+* Dependences:
+```npm i axios```
 src/ComA.jsx
 ```javascript
 import React, { useState, useEffect } from "react";
@@ -999,4 +1001,89 @@ import ReactDOM from "react-dom";
 import ComA from "./ComA"
 
 ReactDOM.render( < ComA / > , document.getElementById("root"));
+```
+## 23. React Router DOM
+* React router use dynamic routing it is used to replace server side routing (i.e, when you change the path the page will reload) but if we use react-router it will create client side routing it will not reload the page.
+* react-router-dom consist of :-
+ * <BrowserRouter>
+ * <Switch>
+ * <Route>
+* Advantage of Client side routing
+ 1. Routing between components is fast as the amount of data that renders is less. The rest of the data is rendered by the DOM, and even when there's tons of HTML and CSS to render, the DOM handles that part in the blink of an eye. 
+ 2. For better user experience, animations and transitions can be easily implemented when switching between different components.
+ 3. It gives a real sense of a single-page application in action. No separate pages are rendered, and the current page doesn't refresh to load a new view.
+* Dependences ```npm i react-router-dom```
+
+src/App.jsx
+```javascript
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import About from "./About";
+import Contact from "./Contact";
+import Error from "./Error";
+
+const App = () => {
+  return (
+    <>
+      <Switch>
+        <Route exact path="/" component={About}></Route>
+        <Route path="/contact" component={Contact}></Route>
+        <Route component={Error}></Route>
+      </Switch>
+
+      {/* <About />
+      <Contact /> */}
+    </>
+  );
+};
+
+export default App;
+```
+src/About.jsx
+```javascript
+import React from "react";
+
+const About = () => {
+  return <h1>This is about page</h1>;
+};
+
+export default About;
+```
+
+src/Contact.jsx
+```javascript
+import React from "react";
+
+const Contact = () => {
+  return <h1>This is Contact page</h1>;
+};
+
+export default Contact;
+
+```
+
+src/Error.jsx
+```javascript
+import React from "react";
+
+const Error = () => {
+  return <h1>Oops ! Page not found</h1>;
+};
+
+export default Error;
+```
+
+src/index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App.jsx";
+import { BrowserRouter } from "react-router-dom";
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
 ```
