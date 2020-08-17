@@ -1163,3 +1163,121 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
+## 25.React-router-dom has its own React Hooks 
+* They are :
+ * useParams()
+ * useLocation()
+ * useHistory()
+ 
+1. useParams() Hooks in react-router-dom  
+* What does useParams() do ?
+```This hook gives us access to the params of that particular route. params are parameters whose values are set dynamically in a URL. Usually, the way we access the params in previous versions of react-router was through the match props passed to the component.```
+
+src/Menu.jsx
+```javascript
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+const Menu = () => {
+  return (
+    <>
+      <div className="nav-bar">
+        <NavLink exact activeClassName="active-class" to="/">
+          About Us
+        </NavLink>
+        <NavLink exact activeClassName="active-class" to="/Services">
+          Services
+        </NavLink>
+        <NavLink exact activeClassName="active-class" to="/User/Naveen/babu">
+          User
+        </NavLink>
+        <NavLink exact activeClassName="active-class" to="/Contact">
+          Contact Us
+        </NavLink>
+      </div>
+    </>
+  );
+};
+
+export default Menu;
+```
+
+src/User.jsx
+```javascript
+import React from "react";
+import { useParams } from "react-router-dom";
+
+// const User = ({ match }) => {
+//   return <h1>This is a {match.params.name} page !</h1>;
+// };
+
+const User = () => {
+  const { fname, lname } = useParams();
+  return (
+    <h1>
+      This is a {fname} {lname} page !
+    </h1>
+  );
+};
+export default User;
+```
+
+2. useLocation() Hooks in react-router-dom
+* What does useLocation() do ?
+``` The useLocation hook return the location object that represent the current URL. You can think about it like a useState that returns a new location whenever the URL changes.```
+
+src/User.jsx
+```javascript
+import React from "react";
+import { useParams, useLocation } from "react-router-dom";
+
+const User = () => {
+  const { fname, lname } = useParams();
+  const location = useLocation();
+  console.log(location);
+
+  return (
+    <>
+      <h1>
+        This is a {fname} {lname} page !
+      </h1>
+      <p>My current location is {location.pathname}</p>
+      {location.pathname === `/user/naveen/babu` ? (
+        <button onClick={() => alert("You find me")}>Click me</button>
+      ) : null}
+    </>
+  );
+};
+export default User;
+```
+
+3. useHistory() Hooks in react-router-dom 
+* What does useHistory() do ?
+```The useHistory hook give you access to the History instance that you may use to navigate```
+
+src/User.jsx
+```javascript
+import React from "react";
+import { useParams, useLocation, useHistory } from "react-router-dom";
+
+const User = () => {
+  const { fname, lname } = useParams();
+  const location = useLocation();
+  console.log(location);
+  const history = useHistory();
+  console.log(history);
+
+  return (
+    <>
+      <h1>
+        This is a {fname} {lname} page !
+      </h1>
+      <p>My current location is {location.pathname}</p>
+      {location.pathname === `/user/naveen/babu` ? (
+        <button onClick={() => history.goBack()}>Go back</button>
+      ) : null}
+    </>
+  );
+};
+export default User;
+```
