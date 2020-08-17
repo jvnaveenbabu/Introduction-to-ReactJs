@@ -1281,3 +1281,37 @@ const User = () => {
 };
 export default User;
 ```
+## 26. Redirect in React-router
+* The main functionality of redirect is if the user add some new page after url "/" if that page is not exist then the user will redirect to the home page. 
+* Or if we want to redirect the user to the particular page we can also use this feature.
+
+src/App.jsx
+```javascript
+import React from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import About from "./About";
+import Contact from "./Contact";
+import Services from "./Services";
+import Menu from "./Menu";
+
+const App = () => {
+  return (
+    <>
+      <Menu />
+      <Switch>
+        <Route exact path="/" component={About}></Route>
+        <Route path="/contact" component={Contact}></Route>
+        <Route path="/services" component={Services}></Route>
+        {/* <Route component={Error}></Route> */}
+        <Redirect to="/" />
+      </Switch>
+
+      {/* <About />
+      <Contact /> */}
+    </>
+  );
+};
+
+export default App;
+```
+
