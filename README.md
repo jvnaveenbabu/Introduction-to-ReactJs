@@ -1087,3 +1087,79 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
+
+## 24. React Menu ( NavBar)
+* It will redirect one component into another component without Refreshing the page
+
+src/App.jsx
+```javascript
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import About from "./About";
+import Contact from "./Contact";
+import Error from "./Error";
+import Menu from "./Menu";
+
+const App = () => {
+  return (
+    <>
+      <Menu />
+      <Switch>
+        <Route exact path="/" component={About}></Route>
+        <Route path="/contact" component={Contact}></Route>
+        <Route component={Error}></Route>
+      </Switch>
+
+      {/* <About />
+      <Contact /> */}
+    </>
+  );
+};
+
+export default App;
+```
+src/Menu.jsx
+```javascript
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+const Menu = () => {
+  return (
+    <>
+      <NavLink exact activeClassName="active-class" to="/">
+        About Us
+      </NavLink>
+      <NavLink exact activeClassName="active-class" to="/Contact">
+        Contact Us
+      </NavLink>
+    </>
+  );
+};
+
+export default Menu;
+```
+* About,Contact and Error component are same as mentioned in the above code snippet
+
+src/index.css
+```css
+a.active-class {
+  color: rgb(1, 174, 197);
+  border-bottom: 1px solid red;
+}
+```
+
+src/index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App.jsx";
+import { BrowserRouter } from "react-router-dom";
+import "./index.css";
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
+```
