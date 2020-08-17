@@ -701,3 +701,583 @@ const biodata = {
 console.log(fullName);
 console.log(biodata);
 ```
+
+## 18. Adding Bootstrap in ReactJs with the help of npm 
+* What is npm ?
+1. npm is the world's largest Software Registry.
+2. The registry contains over 800,000 code packages. 
+3. Full form of npm is node package manager
+
+* Software package manager
+1. All npm packages are defined in files called package.json. Ex: npm init
+2. The content of package.json must be written in JSON.
+3. At least two fields must be present in the defination file: name and version
+
+* How to install bootstrap ?
+1. Open the terminal and hit ```npm i bootstrap```
+2. Import the bootstrap files ```import "../node_modules/bootstrap/dist/css/bootstrap.min.css";```
+3. Now you are ready to access bootstrap classes
+
+src/App.jsx
+```javascript
+import React from "react";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+const App = () => {
+  return (
+    <>
+      <h1 className="text-center mb-5 mt-2">Welcome to my WebPage</h1>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm">
+            <div class="card" style={{ width: "18rem" }}>
+              <img
+                src="https://picsum.photos/100/101"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+                <a href="#" class="btn btn-primary">
+                  Go somewhere
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-sm">
+            <div class="card" style={{ width: "18rem" }}>
+              <img
+                src="https://picsum.photos/101/100"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+                <a href="#" class="btn btn-primary">
+                  Go somewhere
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-sm">
+            <div class="card" style={{ width: "18rem" }}>
+              <img
+                src="https://picsum.photos/100/100"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+                <a href="#" class="btn btn-primary">
+                  Go somewhere
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+## 19. createContext()
+* React Hooks provides a concept call **Context**
+* React Context API allows you to easily access data at different level of the components tree, without passing props to every level
+src/App.jsx
+```javascript
+import React, { createContext } from "react";
+import ComA from "./ComA";
+
+const FirstName = createContext();
+const LastName = createContext();
+
+const App = () => {
+  return (
+    <>
+      <FirstName.Provider value={"Naveen"}>
+        <LastName.Provider value={"Babu"}>
+          <ComA />
+        </LastName.Provider>
+      </FirstName.Provider>
+    </>
+  );
+};
+
+export default App;
+export { FirstName, LastName };
+```
+src/ComA.jsx
+```javascript
+import React from "react";
+import ComB from "./ComC";
+
+const ComA = () => {
+  return <ComB />;
+};
+
+export default ComA;
+```
+
+src/ComB
+```javascript
+import React from "react";
+import ComC from "./ComC";
+
+const ComB = () => {
+  return <ComC />;
+};
+
+export default ComB;
+```
+src/ComC
+```javascript
+import React from "react";
+import { FirstName, LastName } from "./App";
+
+const ComC = () => {
+  return (
+    <>
+      <FirstName.Consumer>
+        {(fname) => {
+          return (
+            <LastName.Consumer>
+              {(lname) => {
+                return (
+                  <h1>
+                    My name is {fname} {lname}
+                  </h1>
+                );
+              }}
+            </LastName.Consumer>
+          );
+        }}
+      </FirstName.Consumer>
+    </>
+  );
+};
+
+export default ComC;
+```
+## 20. useContext()
+* Instead of using Consumer we can use useContext() to make code less and effective.
+src/App.jsx
+```javascript
+import React, { createContext } from "react";
+import ComB from "./ComB";
+
+const FirstName = createContext();
+const LastName = createContext();
+
+const App = () => {
+  return (
+    <>
+      <FirstName.Provider value={"Naveen"}>
+        <LastName.Provider value={"Babu"}>
+          <ComB />
+        </LastName.Provider>
+      </FirstName.Provider>
+    </>
+  );
+};
+
+export default App;
+export { FirstName, LastName };
+```
+
+src/ComB.jsx
+```javascript
+import React, { useContext } from "react";
+import { FirstName, LastName } from "./App";
+
+const ComB = () => {
+  const fname = useContext(FirstName);
+  const lname = useContext(LastName);
+  return (
+    <h1>
+      My name is {fname}
+      {lname}
+    </h1>
+  );
+};
+
+export default ComB;
+```
+## 21. useEffect()
+* What does useEffect() do ?
+```By using this Hook, you tell React that your component needs to do something after render. React will remember the function you passed (we’ll refer to it as our “effect”), and call it later after performing the DOM updates. It accept function.```
+
+```javascript
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+## 22. React API call ( AXIOS + useEffect() + async await )
+* Dependences:
+```npm i axios```
+src/ComA.jsx
+```javascript
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+const ComA = () => {
+  const [num, setNum] = useState();
+
+  const [name, setName] = useState();
+
+  const [moves, setMoves] = useState();
+
+  useEffect(() => {
+    async function getData() {
+      const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${num}`);
+      console.log(res.data);
+      setName(res.data.name);
+      setMoves(res.data.moves.length);
+    }
+    getData();
+  });
+
+  return (
+    <>
+      <h1>
+        You Choose <span style={{ color: "red" }}>{num}</span> value
+      </h1>
+      <h1>
+        My name is <span style={{ color: "red" }}>{name} </span>
+      </h1>
+      <h1>
+        I have <span style={{ color: "red" }}>{moves}</span> moves
+      </h1>
+      <select
+        value={num}
+        onChange={(event) => {
+          setNum(event.target.value);
+        }}
+      >
+        <option value="1">1</option>
+        <option value="25">25</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </>
+  );
+};
+
+export default ComA;
+```
+src/index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import ComA from "./ComA"
+
+ReactDOM.render( < ComA / > , document.getElementById("root"));
+```
+## 23. React Router DOM
+* React router use dynamic routing it is used to replace server side routing (i.e, when you change the path the page will reload) but if we use react-router it will create client side routing it will not reload the page.
+* react-router-dom consist of :-
+ * <BrowserRouter>
+ * <Switch>
+ * <Route>
+* Advantage of Client side routing
+ 1. Routing between components is fast as the amount of data that renders is less. The rest of the data is rendered by the DOM, and even when there's tons of HTML and CSS to render, the DOM handles that part in the blink of an eye. 
+ 2. For better user experience, animations and transitions can be easily implemented when switching between different components.
+ 3. It gives a real sense of a single-page application in action. No separate pages are rendered, and the current page doesn't refresh to load a new view.
+* Dependences ```npm i react-router-dom```
+
+src/App.jsx
+```javascript
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import About from "./About";
+import Contact from "./Contact";
+import Error from "./Error";
+
+const App = () => {
+  return (
+    <>
+      <Switch>
+        <Route exact path="/" component={About}></Route>
+        <Route path="/contact" component={Contact}></Route>
+        <Route component={Error}></Route>
+      </Switch>
+
+      {/* <About />
+      <Contact /> */}
+    </>
+  );
+};
+
+export default App;
+```
+src/About.jsx
+```javascript
+import React from "react";
+
+const About = () => {
+  return <h1>This is about page</h1>;
+};
+
+export default About;
+```
+
+src/Contact.jsx
+```javascript
+import React from "react";
+
+const Contact = () => {
+  return <h1>This is Contact page</h1>;
+};
+
+export default Contact;
+
+```
+
+src/Error.jsx
+```javascript
+import React from "react";
+
+const Error = () => {
+  return <h1>Oops ! Page not found</h1>;
+};
+
+export default Error;
+```
+
+src/index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App.jsx";
+import { BrowserRouter } from "react-router-dom";
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
+```
+
+## 24. React Menu ( NavBar)
+* It will redirect one component into another component without Refreshing the page
+
+src/App.jsx
+```javascript
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import About from "./About";
+import Contact from "./Contact";
+import Error from "./Error";
+import Menu from "./Menu";
+
+const App = () => {
+  return (
+    <>
+      <Menu />
+      <Switch>
+        <Route exact path="/" component={About}></Route>
+        <Route path="/contact" component={Contact}></Route>
+        <Route component={Error}></Route>
+      </Switch>
+
+      {/* <About />
+      <Contact /> */}
+    </>
+  );
+};
+
+export default App;
+```
+src/Menu.jsx
+```javascript
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+const Menu = () => {
+  return (
+    <>
+      <NavLink exact activeClassName="active-class" to="/">
+        About Us
+      </NavLink>
+      <NavLink exact activeClassName="active-class" to="/Contact">
+        Contact Us
+      </NavLink>
+    </>
+  );
+};
+
+export default Menu;
+```
+* About,Contact and Error component are same as mentioned in the above code snippet
+
+src/index.css
+```css
+a.active-class {
+  color: rgb(1, 174, 197);
+  border-bottom: 1px solid red;
+}
+```
+
+src/index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App.jsx";
+import { BrowserRouter } from "react-router-dom";
+import "./index.css";
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
+```
+## 25.React-router-dom has its own React Hooks 
+* They are :
+ * useParams()
+ * useLocation()
+ * useHistory()
+ 
+1. useParams() Hooks in react-router-dom  
+* What does useParams() do ?
+```This hook gives us access to the params of that particular route. params are parameters whose values are set dynamically in a URL. Usually, the way we access the params in previous versions of react-router was through the match props passed to the component.```
+
+src/Menu.jsx
+```javascript
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+const Menu = () => {
+  return (
+    <>
+      <div className="nav-bar">
+        <NavLink exact activeClassName="active-class" to="/">
+          About Us
+        </NavLink>
+        <NavLink exact activeClassName="active-class" to="/Services">
+          Services
+        </NavLink>
+        <NavLink exact activeClassName="active-class" to="/User/Naveen/babu">
+          User
+        </NavLink>
+        <NavLink exact activeClassName="active-class" to="/Contact">
+          Contact Us
+        </NavLink>
+      </div>
+    </>
+  );
+};
+
+export default Menu;
+```
+
+src/User.jsx
+```javascript
+import React from "react";
+import { useParams } from "react-router-dom";
+
+// const User = ({ match }) => {
+//   return <h1>This is a {match.params.name} page !</h1>;
+// };
+
+const User = () => {
+  const { fname, lname } = useParams();
+  return (
+    <h1>
+      This is a {fname} {lname} page !
+    </h1>
+  );
+};
+export default User;
+```
+
+2. useLocation() Hooks in react-router-dom
+* What does useLocation() do ?
+``` The useLocation hook return the location object that represent the current URL. You can think about it like a useState that returns a new location whenever the URL changes.```
+
+src/User.jsx
+```javascript
+import React from "react";
+import { useParams, useLocation } from "react-router-dom";
+
+const User = () => {
+  const { fname, lname } = useParams();
+  const location = useLocation();
+  console.log(location);
+
+  return (
+    <>
+      <h1>
+        This is a {fname} {lname} page !
+      </h1>
+      <p>My current location is {location.pathname}</p>
+      {location.pathname === `/user/naveen/babu` ? (
+        <button onClick={() => alert("You find me")}>Click me</button>
+      ) : null}
+    </>
+  );
+};
+export default User;
+```
+
+3. useHistory() Hooks in react-router-dom 
+* What does useHistory() do ?
+```The useHistory hook give you access to the History instance that you may use to navigate```
+
+src/User.jsx
+```javascript
+import React from "react";
+import { useParams, useLocation, useHistory } from "react-router-dom";
+
+const User = () => {
+  const { fname, lname } = useParams();
+  const location = useLocation();
+  console.log(location);
+  const history = useHistory();
+  console.log(history);
+
+  return (
+    <>
+      <h1>
+        This is a {fname} {lname} page !
+      </h1>
+      <p>My current location is {location.pathname}</p>
+      {location.pathname === `/user/naveen/babu` ? (
+        <button onClick={() => history.goBack()}>Go back</button>
+      ) : null}
+    </>
+  );
+};
+export default User;
+```
